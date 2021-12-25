@@ -1,0 +1,43 @@
+.dark-theme {
+    /**
+     * Overriding variables
+     */
+    $primary: $teal-200; 
+    $body-color: $white;
+    $body-bg: $gray-1400;
+
+    $theme-colors: (
+        'primary': $primary,
+        'secondary': $secondary,
+        'success': $success,
+        'danger': $danger,
+        'info': $indigo,
+        'dark': $dark,
+        'light': $light,
+    );
+    
+    @each $color, $value in $theme-colors {
+        --#{$variable-prefix}#{$color}: #{$value};
+    }
+
+    $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
+    @each $color, $value in $theme-colors-rgb {
+        --#{$variable-prefix}#{$color}-rgb: #{$value};
+    }
+
+    // @each $color, $value in $theme-colors {
+    //     .link-#{$color} {
+    //         color: $value;
+
+    //         @if $link-shade-percentage != 0 {
+    //             &:hover,
+    //             &:focus {
+    //                 color: if(color-contrast($value) == $color-contrast-light, shade-color($value, $link-shade-percentage), tint-color($value, $link-shade-percentage));
+    //             }
+    //         }
+    //     }
+    // }
+
+    --#{$variable-prefix}body-color: #{$body-color};
+    --#{$variable-prefix}body-bg: #{$body-bg};
+}

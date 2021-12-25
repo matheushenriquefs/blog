@@ -1,0 +1,42 @@
+/**
+ * Core font
+ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/**
+ * Core variables
+ */
+@import './themes/variables/core.module';
+
+/**
+ * Third-party styles
+ */
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+/**
+ * Core themes variables
+ */
+@import './themes/variables/dark.module';
+
+/**
+ * First-party styles
+ */
+@import './elements/icon.module';
+@import './components/post.module';
+@import './components/navbar.module';
+
+/**
+ * Third-party styles
+ */
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/navbar';
+// @import 'bootstrap/scss/list-group';
+// @import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/utilities/api';
