@@ -1,8 +1,6 @@
 import path from 'path';
 
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
 
 export default class PostService {
     constructor(postRepository) {
@@ -34,11 +32,9 @@ export default class PostService {
             data,
         } = matter(file);
     
-        const body = remark().use(html).processSync(content).toString();
-    
         return {
           ...data,
-          body,
+          body: content,
         };
     }
 }

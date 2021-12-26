@@ -1,14 +1,18 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import PostService from '../../src/services/PostService';
 import PostRepository from '../../src/repositories/PostRepository';
+import MarkdownComponentsEntity from '../../src/entities/MarkdownComponentsEntity';
 
 export default function Post({ post }) {
     return (
         <>
             <h1 className="fw-bold">{post.title}</h1>
             <h2 className="fs-4 mb-5 theme-excerpt">{post.excerpt}</h2>
-            <section dangerouslySetInnerHTML={{ __html: post.body }} />
+            <section>
+                <ReactMarkdown children={post.body} components={MarkdownComponentsEntity} />
+            </section>
         </>
     )
 
