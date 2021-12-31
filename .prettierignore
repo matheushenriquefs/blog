@@ -1,0 +1,7 @@
+.gitignore
+.eslintrc.json
+docker-compose.yml
+Dockerfile
+entrypoint.sh
+package*.json
+README.md
