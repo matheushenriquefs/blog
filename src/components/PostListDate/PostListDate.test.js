@@ -4,11 +4,7 @@ import { toBeInTheDocument, toHaveAttribute } from "@testing-library/jest-dom";
 import { PostListDate } from "./PostListDate";
 
 test("loads and display component", async () => {
-  const { container } = render(
-    <PostListDate
-      date="12-31-2021"
-    />
-  );
+  const { container } = render(<PostListDate date="12-31-2021" />);
   const root = container.firstChild;
   const date = screen.getByText(/dec 31/i);
 

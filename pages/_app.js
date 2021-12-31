@@ -1,9 +1,9 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import { UserSettings } from '../src/contexts/UserSettings';
-import { Layout } from '../src/components/Layout';
+import { UserSettings } from "../src/contexts/UserSettings";
+import { Layout } from "../src/components/Layout";
 
-import '../styles/globals.scss'
+import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         </Layout>
       </UserSettings>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
