@@ -11,7 +11,9 @@ export default function Post({ post }) {
             <h1 className="fw-bold">{post.title}</h1>
             <h2 className="fs-4 mb-5 theme-excerpt">{post.excerpt}</h2>
             <section>
-                <ReactMarkdown children={post.body} components={MarkdownComponentsEntity} />
+                <ReactMarkdown components={MarkdownComponentsEntity}>
+                    {post.body}
+                </ReactMarkdown>
             </section>
         </>
     )

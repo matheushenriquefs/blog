@@ -1,37 +1,37 @@
 export default class MarkdownImageHelper {
-    getAlt(string) {
-        return string.replace(/ *\{[^)]*\} */g, '');
+  getAlt(string) {
+    return string.replace(/ *\{[^)]*\} */g, "");
+  }
+
+  getIsPriority(string) {
+    return string.toLowerCase().includes("{priority}");
+  }
+
+  getImgDimensions(string) {
+    const metaWidthMetaHeight = this.getMetaWidthMetaHeight(string);
+
+    if (metaWidthMetaHeight) {
+      const sanitized = metaWidthMetaHeight.replace(/[{-}]/g, "");
+
+      return {
+        width: this.getWidth(sanitized),
+        height: this.getHeight(sanitized),
+      };
     }
 
-    getIsPriority(string) {
-        return string.toLowerCase().includes('{priority}');
-    }
+    return false;
+  }
 
-    getImgDimensions(string) {
-        const metaWidthMetaHeight = this.getMetaWidthMetaHeight(string);
+  getWidth(string) {
+    return string.split("x")[0];
+  }
 
-        if (metaWidthMetaHeight) {
-            const sanitized = metaWidthMetaHeight.replace(/[{-}]/g, '');
+  getHeight(string) {
+    return string.split("x")[1];
+  }
 
-            return {
-                width: this.getWidth(sanitized),
-                height: this.getHeight(sanitized),
-            }
-        }
-
-        return false;
-    }
-
-    getWidth(string) {
-        return string.split('x')[0];
-    }
-
-    getHeight(string) {
-        return string.split('x')[1];
-    }
-
-    getMetaWidthMetaHeight(string) {
-        const matched = string.match(/\{\d+x\d+\}/g);
-        return matched ? matched[0] : false;
-    }
+  getMetaWidthMetaHeight(string) {
+    const matched = string.match(/\{\d+x\d+\}/g);
+    return matched ? matched[0] : false;
+  }
 }

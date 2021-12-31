@@ -1,11 +1,13 @@
-import MarkdownComponentsService from '../services/MarkdownComponentsService';
-import MarkdownImageHelper from '../helpers/MarkdownImageHelper';
+import MarkdownComponentsService from "../services/MarkdownComponentsService";
+import MarkdownImageHelper from "../helpers/MarkdownImageHelper";
 
 const markdownImageHelper = new MarkdownImageHelper();
-const markdownComponentsService = new MarkdownComponentsService(markdownImageHelper);
+const markdownComponentsService = new MarkdownComponentsService(
+  markdownImageHelper
+);
 
 const MarkdownComponentsEntity = {
-    p: markdownComponentsService.handleParagraphRender,
-}
+  p: markdownComponentsService.handleParagraphRender,
+};
 
 export default MarkdownComponentsEntity;

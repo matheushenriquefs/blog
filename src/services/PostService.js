@@ -1,40 +1,43 @@
-import path from 'path';
+import path from "path";
 
-import matter from 'gray-matter';
+import matter from "gray-matter";
 
 export default class PostService {
-    constructor(postRepository) {
-        this.postRepository = postRepository;
-    }
+  constructor(IPostRepository) {
+    this.IPostRepository = IPostRepository;
+  }
 
-    async index() {
-        const directory = path.join(process.cwd(), '_posts');
-        const filenames = await this.postRepository.readDir(directory);
+  async index() {
+    const directory = path.join(process.cwd(), "_posts");
+    const filenames = await this.IPostRepository.readDir(directory);
 
-        return filenames.map(async (filename) => {
-            const file = await this.postRepository.readFile(path.join(process.cwd(), '_posts', filename), 'utf8');
-            const { data } = matter(file);
-            const slug = filename.replace(/\.mdx$/, '');
+    return filenames.map(async (filename) => {
+      const file = await this.IPostRepository.readFile(
+        path.join(process.cwd(), "_posts", filename),
+        "utf8"
+      );
+      const { data } = matter(file);
+      const slug = filename.replace(/\.mdx$/, "");
 
-            return {
-                ...data,
-                slug,
-                permalink: `/posts/${slug}`,
-            };
-        });
-    }
+      return {
+        ...data,
+        slug,
+        permalink: `/posts/${slug}`,
+      };
+    });
+  }
 
-    async get(slug) {
-        const file = await this.postRepository.readFile(path.join(process.cwd(), '_posts', `${slug}.mdx`), 'utf8');
+  async get(slug) {
+    const file = await this.IPostRepository.readFile(
+      path.join(process.cwd(), "_posts", `${slug}.mdx`),
+      "utf8"
+    );
 
-        const {
-            content,
-            data,
-        } = matter(file);
-    
-        return {
-          ...data,
-          body: content,
-        };
-    }
+    const { content, data } = matter(file);
+
+    return {
+      ...data,
+      body: content,
+    };
+  }
 }
