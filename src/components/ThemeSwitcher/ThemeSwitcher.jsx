@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 
 import { useUserSettingsContext } from "../../contexts/UserSettings";
 import SunIcon from "../../../public/icons/sun.svg";
@@ -7,12 +7,12 @@ import MoonIcon from "../../../public/icons/moon.svg";
 export const ThemeSwitcher = () => {
   const { settings, setSettings } = useUserSettingsContext();
 
-  const handleThemeSwitchEffect = async () => {
+  const handleThemeSwitchEffect = useCallback(async () => {
     const { body } = document;
     settings.theme.dark
       ? body.classList.add("dark-theme")
       : body.classList.remove("dark-theme");
-  };
+  }, [settings.theme.dark]);
 
   const handleThemeSwitchClick = async () =>
     setSettings((prevState) => {
@@ -24,7 +24,10 @@ export const ThemeSwitcher = () => {
       };
     });
 
-  useEffect(() => handleThemeSwitchEffect(), [settings]);
+  useEffect(
+    () => handleThemeSwitchEffect(),
+    [handleThemeSwitchEffect, settings]
+  );
 
   return (
     <div onClick={async () => handleThemeSwitchClick()}>
