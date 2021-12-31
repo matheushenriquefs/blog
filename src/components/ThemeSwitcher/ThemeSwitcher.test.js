@@ -5,7 +5,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 test("loads and display component", async () => {
   const { container } = render(<ThemeSwitcher />);
-  expect(container).toBeInTheDocument();
+  expect(container.firstChild).toBeInTheDocument();
 });
 
 test("change theme", async () => {
