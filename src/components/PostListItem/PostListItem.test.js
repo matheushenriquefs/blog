@@ -1,6 +1,10 @@
 import "../../../__mocks__/matchMediaMock";
 import { render, screen } from "../../utils/test";
-import { toBeInTheDocument } from "@testing-library/jest-dom";
+import {
+  toBeInTheDocument,
+  toHaveTextContent,
+  toHaveAttribute,
+} from "@testing-library/jest-dom";
 import { PostListItem } from "./PostListItem";
 
 test("loads and display component", async () => {
@@ -16,7 +20,7 @@ test("loads and display component", async () => {
 
   const title = screen.getByText(/title/i);
   const excerpt = screen.getByText(/excerpt/i);
-  const date = screen.getByText(/dec 31/i);
+  const date = container.querySelector('[datetime="Dec 31"]');
   const link = screen.getByRole("link");
 
   expect(root).toBeInTheDocument();

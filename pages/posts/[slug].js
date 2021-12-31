@@ -25,7 +25,7 @@ export default function Post({ post }) {
       </h2>
       <article>
         {isLoading ? (
-          <span className="placeholder" />
+          <span className="placeholder">...</span>
         ) : (
           <ReactMarkdown components={MarkdownComponentsEntity}>
             {post.body}
