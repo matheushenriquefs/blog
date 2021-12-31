@@ -32,9 +32,9 @@ export const ThemeSwitcher = () => {
   return (
     <div onClick={async () => handleThemeSwitchClick()}>
       {settings.theme.dark ? (
-        <SunIcon className="theme-icon" />
+        <SunIcon role="img" aria-label="sun-icon" className="theme-icon" />
       ) : (
-        <MoonIcon className="theme-icon" />
+        <MoonIcon role="img" aria-label="moon-icon" className="theme-icon" />
       )}
     </div>
   );
