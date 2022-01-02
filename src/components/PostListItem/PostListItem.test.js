@@ -7,6 +7,15 @@ import {
 } from "@testing-library/jest-dom";
 import { PostListItem } from "./PostListItem";
 
+beforeAll(() => {
+  jest.useFakeTimers("modern");
+  jest.setSystemTime(new Date(2021, 11, 31));
+});
+
+afterAll(() => {
+  jest.useRealTimers();
+});
+
 test("loads and display component", async () => {
   const { container } = render(
     <PostListItem
