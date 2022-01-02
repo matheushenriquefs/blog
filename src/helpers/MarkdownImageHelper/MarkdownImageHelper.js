@@ -1,4 +1,4 @@
-export default class MarkdownImageHelper {
+export class MarkdownImageHelper {
   getAlt(string) {
     return string.replace(/ *\{[^)]*\} */g, "");
   }
@@ -11,15 +11,13 @@ export default class MarkdownImageHelper {
     const metaWidthMetaHeight = this.getMetaWidthMetaHeight(string);
 
     if (metaWidthMetaHeight) {
-      const sanitized = metaWidthMetaHeight.replace(/[{-}]/g, "");
-
       return {
-        width: this.getWidth(sanitized),
-        height: this.getHeight(sanitized),
+        width: this.getWidth(metaWidthMetaHeight),
+        height: this.getHeight(metaWidthMetaHeight),
       };
     }
 
-    return false;
+    return null;
   }
 
   getWidth(string) {
@@ -32,6 +30,6 @@ export default class MarkdownImageHelper {
 
   getMetaWidthMetaHeight(string) {
     const matched = string.match(/\{\d+x\d+\}/g);
-    return matched ? matched[0] : false;
+    return matched ? matched[0].replace(/[{-}]/g, "") : "";
   }
 }
