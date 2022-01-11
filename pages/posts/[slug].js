@@ -1,8 +1,11 @@
+import { StringDecoder } from "string_decoder";
+
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
 import PostService from "../../src/services/PostService";
 import PostRepository from "../../src/repositories/PostRepository";
+import StringDecoderHelper from "../../src/helpers/StringDecoderHelper";
 import MarkdownComponentsEntity from "../../src/entities/MarkdownComponentsEntity";
 
 export default function Post({ post }) {
@@ -37,8 +40,9 @@ export default function Post({ post }) {
 }
 
 export async function getStaticProps({ params }) {
+  const stringDecoderHelper = new StringDecoderHelper(new StringDecoder("utf8"));
   const postRepository = new PostRepository();
-  const postService = new PostService(postRepository);
+  const postService = new PostService(postRepository, stringDecoderHelper);
 
   return {
     props: {
@@ -48,8 +52,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
+  const stringDecoderHelper = new StringDecoderHelper(new StringDecoder("utf8"));
   const postRepository = new PostRepository();
-  const postService = new PostService(postRepository);
+  const postService = new PostService(postRepository, stringDecoderHelper);
 
   const posts = await Promise.all(await postService.index());
 

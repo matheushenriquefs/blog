@@ -30,12 +30,22 @@ export const ThemeSwitcher = () => {
   );
 
   return (
-    <div onClick={async () => handleThemeSwitchClick()}>
-      {settings.theme.dark ? (
-        <SunIcon role="img" aria-label="sun-icon" className="theme-icon" />
-      ) : (
-        <MoonIcon role="img" aria-label="moon-icon" className="theme-icon" />
-      )}
-    </div>
+    <>
+      <div
+        className="theme-switcher"
+        onClick={async () => handleThemeSwitchClick()}
+      >
+        {settings.theme.dark ? (
+          <SunIcon role="img" aria-label="sun-icon" className="theme-icon" />
+        ) : (
+          <MoonIcon role="img" aria-label="moon-icon" className="theme-icon" />
+        )}
+      </div>
+      <style jsx>{`
+        .theme-switcher {
+          cursor: pointer;
+        }
+      `}</style>
+    </>
   );
 };

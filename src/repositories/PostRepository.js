@@ -5,5 +5,6 @@ export default class PostRepository {
   constructor() {
     this.readFile = promisify(fs.readFile);
     this.readDir = promisify(fs.readdir);
+    this.createReadStream = fs.createReadStream;
   }
 }

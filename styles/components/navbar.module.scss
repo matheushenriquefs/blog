@@ -1,5 +1,12 @@
 .navbar {
     background-color: $white;
+    height: 3.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.nav-link:not(.nav-link:last-child) {
+    margin-right: 1rem;
 }
 
 .dark-theme .navbar {

@@ -3,8 +3,9 @@ import path from "path";
 import matter from "gray-matter";
 
 export default class PostService {
-  constructor(IPostRepository) {
+  constructor(IPostRepository, IStringDecoderHelper) {
     this.IPostRepository = IPostRepository;
+    this.IStringDecoderHelper = IStringDecoderHelper;
   }
 
   async index() {
@@ -12,10 +13,12 @@ export default class PostService {
     const filenames = await this.IPostRepository.readDir(directory);
 
     return filenames.map(async (filename) => {
-      const file = await this.IPostRepository.readFile(
-        path.join(process.cwd(), "_posts", filename),
-        "utf8"
+      const stream = this.IPostRepository.createReadStream(
+        path.join(process.cwd(), "_posts", filename)
       );
+
+      const file = await this.IStringDecoderHelper.streamToString(stream);
+
       const { data } = matter(file);
       const slug = filename.replace(/\.mdx$/, "");
 
@@ -28,10 +31,11 @@ export default class PostService {
   }
 
   async get(slug) {
-    const file = await this.IPostRepository.readFile(
-      path.join(process.cwd(), "_posts", `${slug}.mdx`),
-      "utf8"
+    const stream = await this.IPostRepository.createReadStream(
+      path.join(process.cwd(), "_posts", `${slug}.mdx`)
     );
+
+    const file = await this.IStringDecoderHelper.streamToString(stream);
 
     const { content, data } = matter(file);
 
